@@ -1,0 +1,461 @@
+GTSIP — Global Transport & Shipment Intelligence Platform
+
+Version: 1.0
+Domain: Global Transport & Logistics
+Architecture target: Cloud-native, event-driven, microservices
+Primary technologies: Java/Spring, Python, React, Oracle, Kafka, Elasticsearch
+
+1. Compania
+
+Să presupunem că firma se numește GlobalTrans Logistics.
+
+Este o companie internațională care gestionează transporturi:
+
+road freight;
+air freight;
+sea freight;
+intermodal transport.
+
+Are operațiuni în Europa, Asia și America.
+
+Compania are deja mai multe sisteme:
+
+Order Management System
+Warehouse Management System
+Fleet Management System
+Customs System
+GPS/Telematics System
+Billing System
+External Carrier Systems
+
+Problema este că informațiile sunt distribuite în aceste sisteme.
+
+GTSIP va deveni platforma centrală pentru operațiuni, tracking, analytics și intelligence.
+
+2. Problema de business
+
+Un operator poate avea următoarea situație:
+
+Shipment SH-783421 pleacă din București și trebuie să ajungă la Hamburg.
+
+Informațiile despre shipment sunt în Oracle.
+
+Poziția camionului vine dintr-un sistem telematics.
+
+Evenimentele depozitului vin din WMS.
+
+Informațiile despre vamă vin din Customs System.
+
+Datele despre trafic vin dintr-un sistem extern.
+
+Operatorul trebuie să poată vedea toate acestea într-un singur loc.
+
+3. Obiectivele platformei
+
+GTSIP trebuie să permită:
+
+crearea și administrarea shipment-urilor;
+urmărirea shipment-urilor;
+procesarea evenimentelor în timp aproape real;
+identificarea întârzierilor;
+monitorizarea rutelor;
+monitorizarea vehiculelor;
+căutarea rapidă în volume mari de date;
+dashboard-uri operaționale;
+analytics;
+notificarea operatorilor;
+integrarea sistemelor externe;
+pregătirea datelor pentru Machine Learning;
+furnizarea unor funcționalități AI/LLM.
+4. Actorii
+
+Vom avea următorii actori:
+
+Operations Manager
+
+Monitorizează operațiunile globale.
+
+Shipment Operator
+
+Lucrează efectiv cu shipment-urile.
+
+Dispatcher
+
+Monitorizează vehicule și rute.
+
+Warehouse Operator
+
+Înregistrează intrarea/ieșirea mărfurilor.
+
+Data Analyst
+
+Analizează datele istorice.
+
+System Administrator
+
+Monitorizează infrastructura.
+
+External Carrier
+
+Trimite informații despre transport.
+
+Telematics System
+
+Trimite poziții GPS și informații despre vehicule.
+
+External Systems
+
+WMS, customs, billing etc.
+
+5. Principalele entități
+
+La nivel business vom avea:
+
+Customer
+Order
+OrderItem
+Shipment
+ShipmentEvent
+Route
+RouteSegment
+Vehicle
+Driver
+Warehouse
+Location
+Carrier
+Delivery
+Notification
+TrackingPoint
+
+Mai târziu vom decide exact care devin:
+
+Entity;
+Value Object;
+Aggregate;
+DTO;
+event.
+6. Use Cases
+
+Vom avea cel puțin următoarele.
+
+UC01 — Create Shipment
+
+Operatorul creează un shipment.
+
+Customer
+   ↓
+Order
+   ↓
+Shipment
+UC02 — Update Shipment
+
+Operatorul modifică informațiile shipment-ului.
+
+UC03 — Assign Vehicle
+
+Dispatcher-ul asociază un vehicul.
+
+UC04 — Assign Route
+
+Dispatcher-ul atribuie o rută.
+
+UC05 — Track Shipment
+
+Operatorul vede poziția/statusul shipment-ului.
+
+UC06 — Receive Tracking Event
+
+Platforma primește un eveniment:
+
+VEHICLE_LOCATION_UPDATED
+UC07 — Detect Delay
+
+Sistemul identifică faptul că shipment-ul este întârziat.
+
+UC08 — Recalculate ETA
+
+Sistemul recalculează Estimated Time of Arrival.
+
+Inițial:
+
+ETA = business rules
+
+Mai târziu:
+
+ETA = Machine Learning model
+UC09 — Search Shipments
+
+Operatorul poate căuta:
+
+Shipment ID
+Customer
+Origin
+Destination
+Status
+Vehicle
+Date
+Delay
+UC10 — Monitor Delayed Shipments
+
+Dashboard-ul afișează shipment-urile întârziate.
+
+UC11 — Receive Warehouse Event
+
+De exemplu:
+
+SHIPMENT_RECEIVED_AT_WAREHOUSE
+UC12 — Customs Clearance
+
+Sistemul primește:
+
+CUSTOMS_CLEARED
+
+și actualizează shipment-ul.
+
+UC13 — Shipment Delivery
+
+La livrare:
+
+SHIPMENT_DELIVERED
+
+este publicat în Kafka.
+
+UC14 — Generate Operational KPIs
+
+Exemple:
+
+On-time delivery rate
+Average delay
+Average transit time
+Shipments/day
+Delayed shipments
+Carrier performance
+Route performance
+UC15 — Search Historical Events
+
+Analistul caută evenimente istorice.
+
+Aici Elasticsearch va deveni important.
+
+UC16 — Detect Anomalies
+
+De exemplu:
+
+Vehicle normally travels:
+80–100 km/h
+
+Current pattern:
+20 km/h for 3 hours
+
+Sistemul poate marca situația drept anomală.
+
+UC17 — Predict Shipment Delay
+
+ML:
+
+Shipment data
+     ↓
+Features
+     ↓
+ML Model
+     ↓
+Delay probability
+UC18 — Predict ETA
+Current location
+Traffic
+Distance
+Historical travel time
+Weather
+Route
+Vehicle
+Time of day
+
+→ model ML.
+
+UC19 — AI Logistics Assistant
+
+Operatorul poate întreba:
+
+„Which shipments from Romania to Germany are currently delayed more than two hours?”
+
+AI-ul interpretează întrebarea și solicită datele relevante.
+
+UC20 — Operational Alert
+
+Sistemul poate genera:
+
+HIGH_DELAY
+ROUTE_ANOMALY
+VEHICLE_ANOMALY
+CUSTOMS_DELAY
+DELIVERY_RISK
+7. Volumul de date
+
+Aici începem să justificăm arhitectura.
+
+Vom presupune:
+
+Shipment-uri
+10,000,000+ / year
+Tracking events
+10,000,000+ / day
+Peak event rate
+10,000+ events/second
+Active shipments
+100,000+
+Vehicles
+50,000+
+Concurrent users
+5,000+
+
+Asta este suficient de mare încât să avem probleme reale de:
+
+scalability;
+indexing;
+partitioning;
+asynchronous processing;
+caching;
+distributed systems.
+8. Non-functional requirements
+Performance
+
+API-urile operaționale:
+
+p95 < 500 ms
+
+Pentru operațiile simple.
+
+Search:
+
+p95 < 1 second
+
+pentru query-urile uzuale.
+
+Availability
+
+Target:
+
+99.9%
+
+pentru serviciile critice.
+
+Scalability
+
+Sistemul trebuie să poată crește fără redesign major:
+
+10k events/sec
+       ↓
+50k events/sec
+       ↓
+100k events/sec
+Reliability
+
+Un serviciu care cade nu trebuie să oprească întreg sistemul.
+
+De aici vom ajunge la:
+
+Kafka;
+retries;
+timeout;
+circuit breaker;
+dead-letter queues;
+idempotency.
+9. Data consistency
+
+Aici avem o discuție foarte importantă de interviu.
+
+Oracle poate avea:
+
+Shipment status = IN_TRANSIT
+
+iar Elasticsearch poate avea pentru câteva momente informația veche.
+
+Acceptăm eventual consistency pentru anumite componente.
+
+Dar nu o acceptăm peste tot.
+
+De exemplu:
+
+Oracle
+→ transactional consistency
+
+în timp ce:
+
+Kafka → Elasticsearch
+→ eventual consistency
+
+Această diferență va fi foarte importantă în proiect.
+
+10. Observability
+
+Platforma trebuie să poată fi monitorizată.
+
+Vom avea:
+
+Logs
+Metrics
+Health checks
+Tracing
+
+și ulterior:
+
+Spring Boot Actuator
+
+plus tehnologii de observability.
+
+Vom putea răspunde la întrebarea:
+
+„De ce shipment-ul SH-783421 nu apare în dashboard?”
+
+și să urmărim:
+
+Oracle
+ ↓
+Kafka
+ ↓
+Tracking Service
+ ↓
+Elasticsearch
+ ↓
+React
+11. Cerința de AI
+
+Platforma trebuie proiectată de la început astfel încât datele istorice să poată fi folosite pentru ML.
+
+De exemplu:
+
+Historical shipments
+        ↓
+Feature engineering
+        ↓
+Training dataset
+        ↓
+ML model
+        ↓
+ETA prediction
+
+Nu implementăm ML în prima fază.
+
+Dar arhitectura trebuie să permită integrarea lui ulterior.
+
+12. Cerința LLM
+
+Vom avea în roadmap:
+
+Logistics AI Assistant
+
+care poate răspunde la întrebări operaționale și poate ajuta operatorul să găsească informații.
+
+Vom proiecta interfața astfel încât:
+
+React
+   ↓
+AI Service
+   ↓
+LLM
+   ↓
+Structured request
+   ↓
+Business services
+
+LLM-ul nu va modifica direct baza de date.
