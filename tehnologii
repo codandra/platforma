@@ -1,0 +1,28 @@
+| Cerința                    | Ce vom implementa                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Java + Spring**          | Java 21 + Spring Boot 4 + Spring Data JPA + Spring MVC                                               |
+| **Python**                 | serviciu Python pentru ML/data processing                                                            |
+| **React**                  | dashboard operațional + tracking + analytics                                                         |
+| **Full lifecycle**         | requirements → architecture → coding → testing → deployment → monitoring                             |
+| **Microservices**          | Shipment, Tracking, Route, Analytics etc.                                                            |
+| **Cloud-native**           | Docker, health checks, externalized configuration, stateless services, eventual Kubernetes           |
+| **Spring Cloud**           | Config, Gateway, Resilience patterns și ulterior service discovery                                   |
+| **Reactive UI**            | React cu async API calls, streaming/live updates                                                     |
+| **XP**                     | proiectarea task-urilor astfel încât să putem exersa pair programming, small increments, refactoring |
+| **TDD**                    | JUnit + Mockito, teste scrise înaintea implementării pentru componente importante                    |
+| **BDD**                    | scenarii Given/When/Then + Cucumber                                                                  |
+| **Selenium**               | teste end-to-end pentru React                                                                        |
+| **Oracle**                 | sistem tranzacțional principal                                                                       |
+| **Hibernate/JPA**          | ORM pentru modelul de domeniu                                                                        |
+| **Kafka**                  | event-driven architecture                                                                            |
+| **Elasticsearch**          | search + analytics pe volume mari                                                                    |
+| **Distributed systems**    | servicii independente + Kafka + eventual consistency                                                 |
+| **SOLID**                  | aplicat efectiv în cod                                                                               |
+| **Design Patterns**        | Strategy, Factory, Builder, Adapter, Observer, etc.                                                  |
+| **DDD**                    | bounded contexts, aggregates, entities, value objects                                                |
+| **Hexagonal Architecture** | domain → application → adapters                                                                      |
+| **DevOps**                 | Git, Maven, Docker, CI/CD                                                                            |
+| **AI**                     | ETA prediction, delay prediction, anomaly detection                                                  |
+| **LLM**                    | AI assistant pentru operațiuni logistice                                                             |
+| **Prompt engineering**     | prompts versionate + structured output + evaluare                                                    |
+| **Data-driven**            | pipeline Oracle → Kafka → Elasticsearch/Python/ML                                                    |
