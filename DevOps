@@ -1,0 +1,44 @@
+DevOps
+
+Proiectul va ajunge să arate aproximativ:
+
+Developer
+   ↓
+Git
+   ↓
+GitHub
+   ↓
+CI pipeline
+   ↓
+Build
+   ↓
+Unit tests
+   ↓
+Integration tests
+   ↓
+Docker image
+   ↓
+Deployment
+
+Docker Compose va porni:
+
+Oracle
+Kafka
+Zookeeper/KRaft
+Elasticsearch
+Kibana
+Spring services
+Python service
+React
+
+Iar ulterior putem trece la Kubernetes:
+
+Kubernetes
+ ├── shipment-service
+ ├── tracking-service
+ ├── route-service
+ ├── analytics-service
+ ├── ml-service
+ ├── kafka
+ ├── elasticsearch
+ └── ...
