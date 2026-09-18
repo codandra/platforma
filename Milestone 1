@@ -1,0 +1,8 @@
+GTSIP
+│
+├── Business Requirements
+├── Use Cases
+├── Domain Model
+├── Bounded Contexts
+├── Architecture
+└── Oracle Data Model
