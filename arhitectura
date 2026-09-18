@@ -1,0 +1,33 @@
+                    ┌─────────────────────┐
+                    │       React         │
+                    │ Operations Dashboard│
+                    └──────────┬──────────┘
+                               │
+                         REST / SSE
+                               │
+                    ┌──────────▼──────────┐
+                    │   API Gateway       │
+                    │   Spring Cloud      │
+                    └──────────┬──────────┘
+                               │
+          ┌────────────────────┼─────────────────────┐
+          │                    │                     │
+          ▼                    ▼                     ▼
+   Shipment Service      Tracking Service      Route Service
+   Spring Boot           Spring Boot           Spring Boot
+          │                    │                     │
+          └────────────────────┼─────────────────────┘
+                               │
+                             Kafka
+                               │
+          ┌────────────────────┼─────────────────────┐
+          │                    │                     │
+          ▼                    ▼                     ▼
+    Analytics Service    Notification Service   ML Service
+       Java                    Java                Python
+          │                    │                     │
+          ▼                    ▼                     ▼
+    Elasticsearch             ...              ML models
+          │
+          ▼
+       Kibana
