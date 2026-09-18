@@ -1,0 +1,114 @@
+FAZA 0 — Business
+compania fictivă
+problema de business
+stakeholderii
+user stories
+functional requirements
+non-functional requirements
+volumele de date
+SLA-uri
+use cases
+FAZA 1 — Architecture
+C4 diagram
+bounded contexts
+DDD
+modular monolith
+hexagonal architecture
+API contracts
+FAZA 2 — Oracle
+schema
+relationships
+indexes
+SQL
+PL/SQL
+performance
+volume de date
+FAZA 3 — Java/Spring
+Java 21
+Spring Boot
+JPA/Hibernate
+REST
+validation
+exception handling
+DTOs
+transactions
+FAZA 4 — Engineering
+SOLID
+design patterns
+TDD
+JUnit
+Mockito
+integration testing
+Testcontainers
+BDD/Cucumber
+FAZA 5 — Distributed Systems
+Kafka
+event contracts
+idempotency
+retries
+DLQ
+ordering
+consumer groups
+eventual consistency
+FAZA 6 — Microservices
+split modular monolith
+Shipment Service
+Tracking Service
+Route Service
+Analytics Service
+Spring Cloud
+Gateway
+resilience
+FAZA 7 — Big Data
+Elasticsearch
+large-volume indexing
+analytics
+Kafka → Elasticsearch
+Oracle → Kafka
+data pipelines
+FAZA 8 — React
+React architecture
+components
+state
+API integration
+filtering
+dashboards
+SSE/live updates
+Selenium
+FAZA 9 — DevOps
+Git
+Maven
+Docker
+Docker Compose
+CI/CD
+Linux
+Kubernetes
+FAZA 10 — Python + ML
+Pandas
+NumPy
+feature engineering
+scikit-learn
+ETA prediction
+delay prediction
+anomaly detection
+model evaluation
+Python service
+Kafka integration
+FAZA 11 — AI/LLM
+Logistics AI Assistant
+prompt engineering
+structured output
+tool calling
+RAG, dacă are sens
+evaluation
+guardrails
+FAZA 12 — Security
+
+Abia la final, exact cum ai cerut:
+
+Spring Security
+OAuth2
+OIDC
+JWT
+Keycloak
+roles/permissions
