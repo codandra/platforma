@@ -1,0 +1,39 @@
+Vreau să poți explica:
+
+Why Oracle?
+
+Why Kafka?
+
+Why Elasticsearch?
+
+Why microservices?
+
+Why hexagonal architecture?
+
+Why eventual consistency?
+
+Why Hibernate?
+
+Why SSE instead of WebSocket?
+
+Why React?
+
+Why Python for ML instead of Java?
+
+Where would you use Redis?
+
+What happens if Kafka consumer crashes?
+
+How do you guarantee idempotency?
+
+How do you handle duplicate events?
+
+How do you scale Tracking Service?
+
+How do you test Kafka consumers?
+
+How do you test React?
+
+How would you deploy this to AWS/Azure?
+
+Where does ML fit?
