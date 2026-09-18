@@ -1,0 +1,291 @@
+Etapa 1 — Business analysis
+
+Mai întâi definim:
+
+Business problem
+Actors
+Business requirements
+Functional requirements
+Non-functional requirements
+Use cases
+Domain
+Entities
+Events
+
+Etapa 2 — Architecture
+
+Facem:
+
+C4 diagram
+System Context
+Container diagram
+Component diagram
+
+și stabilim:
+
+monolith vs microservices
+
+Eu aș începe cu un modular monolith bine structurat, apoi extragem microserviciile.
+
+Asta te ajută enorm să înțelegi arhitectura, în loc să creezi din prima 10 proiecte Spring Boot pe care nu le înțelegi.
+
+Etapa 3 — Domain-Driven Design
+
+Definim bounded contexts:
+
+                    Logistics Platform
+                           │
+       ┌───────────────────┼────────────────────┐
+       ↓                   ↓                    ↓
+   Orders              Shipments             Tracking
+   Context               Context               Context
+
+       ↓                   ↓                    ↓
+
+  Customers             Routes              Vehicles
+
+Și identificăm:
+
+Entities
+Value Objects
+Aggregates
+Aggregate Roots
+Repositories
+Domain Services
+Domain Events
+Application Services
+Etapa 4 — Oracle
+
+Facem schema reală.
+
+De exemplu:
+
+CUSTOMER
+ORDER
+ORDER_ITEM
+SHIPMENT
+SHIPMENT_EVENT
+ROUTE
+VEHICLE
+WAREHOUSE
+LOCATION
+DELIVERY
+
+Apoi:
+
+PK
+FK
+indexes
+constraints
+sequences
+triggers where justified
+views
+PL/SQL
+
+Și vom avea și probleme de performanță intenționate, ca să înveți să le rezolvi:
+
+slow query
+    ↓
+EXPLAIN PLAN
+    ↓
+index
+    ↓
+query optimisation
+Etapa 5 — Spring Boot
+
+Construim:
+
+Controller
+    ↓
+Application Service
+    ↓
+Domain
+    ↓
+Repository
+    ↓
+Hibernate
+    ↓
+Oracle
+
+și discutăm de ce fiecare layer există.
+
+Etapa 6 — Design Patterns
+
+Nu le vom introduce artificial.
+
+De exemplu:
+
+Strategy
+
+pentru calcularea costului transportului:
+
+StandardShippingStrategy
+ExpressShippingStrategy
+InternationalShippingStrategy
+
+Factory
+
+pentru crearea diferitelor tipuri de shipment.
+
+Builder
+
+pentru obiecte complexe.
+
+Adapter
+
+pentru integrarea cu un sistem extern de tracking.
+
+Facade
+
+pentru simplificarea interacțiunii cu mai multe servicii.
+
+Observer / Domain Events
+
+pentru notificări.
+
+Etapa 7 — Kafka
+
+Aici intră experiența ta existentă.
+
+Vom avea:
+
+Shipment Service
+       ↓
+ShipmentCreatedEvent
+       ↓
+Kafka
+       ↓
+Analytics Service
+
+și:
+
+ShipmentDelayedEvent
+       ↓
+Kafka
+       ↓
+Notification Service
+       ↓
+React Dashboard
+Etapa 8 — Elasticsearch
+
+Construim:
+
+Oracle
+  ↓
+Kafka
+  ↓
+Indexing Service
+  ↓
+Elasticsearch
+  ↓
+Search API
+  ↓
+React
+
+Aici poți explica foarte bine la interviu diferența dintre:
+
+Oracle = system of record
+
+și
+
+Elasticsearch = search/analytics-oriented store.
+
+Etapa 9 — React
+
+Și aici nu facem doar:
+
+Hello World.
+
+Facem dashboard:
+
+┌────────────────────────────────────────────┐
+│       LOGISTICS CONTROL TOWER              │
+├──────────┬──────────┬──────────┬───────────┤
+│ Shipments│ Delayed  │ In Transit│ Delivered │
+│  125,430 │  3,281   │  42,103   │  80,046  │
+├──────────┴──────────┴──────────┴───────────┤
+│                                            │
+│          Shipment analytics               │
+│                                            │
+├────────────────────────────────────────────┤
+│ Search shipment: [_____________] [Search] │
+├────────────────────────────────────────────┤
+│ ID │ Route │ Status │ ETA │ Risk │ Updated │
+└────────────────────────────────────────────┘
+Etapa 10 — Testing
+
+Vom scrie efectiv:
+
+JUnit
+Mockito
+integration tests
+repository tests
+REST tests
+Kafka tests
+Testcontainers
+
+și vei învăța diferența dintre:
+
+Unit Test
+Integration Test
+End-to-End Test
+Etapa 11 — Docker
+
+La final:
+
+docker-compose
+
+cu:
+
+Oracle
+Kafka
+Zookeeper/KRaft
+Elasticsearch
+Kibana
+Backend
+Frontend
+
+sau, dacă Oracle în Docker devine prea greu pentru setup-ul local, îl adaptăm cu o instanță Oracle XE.
+
+Etapa 12 — ML
+
+Și abia atunci:
+
+Python
+   ↓
+Pandas
+   ↓
+Feature Engineering
+   ↓
+Scikit-learn
+   ↓
+Model
+   ↓
+MLflow
+   ↓
+FastAPI
+   ↓
+Docker
+
+și îl conectăm la sistem.
+
+Iar autentificarea o lăsăm exact cum ai spus
+
+La început:
+
+❌ OAuth2
+❌ JWT
+❌ Keycloak
+❌ RBAC
+
+Nu ne complicăm.
+
+La final facem separat:
+
+React
+   ↓
+OAuth2 / OIDC
+   ↓
+Keycloak
+   ↓
+Spring Security
