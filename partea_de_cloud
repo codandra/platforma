@@ -1,0 +1,35 @@
+Spring Cloud
+
+Vom include și partea asta, dar nu o vom introduce din prima zi.
+
+Vom ajunge la:
+
+Spring Cloud Gateway
+Spring Cloud Config
+Resilience patterns
+Service discovery
+Distributed configuration
+
+De exemplu:
+
+React
+  │
+  ▼
+API Gateway
+  │
+  ├── Shipment Service
+  ├── Tracking Service
+  ├── Route Service
+  └── Analytics Service
+
+Și vom implementa situații reale:
+
+Shipment Service unavailable
+          ↓
+       timeout
+          ↓
+       retry
+          ↓
+   circuit breaker
+          ↓
+      fallback
