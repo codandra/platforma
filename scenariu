@@ -1,0 +1,28 @@
+Global Transport & Shipment Intelligence Platform — GTSIP
+
+O platformă internă pentru o companie globală de transport și logistică.
+
+Scenariul
+
+Compania operează transporturi în Europa, Asia și America și procesează milioane de shipment events.
+
+Sistemele existente trimit evenimente precum:
+
+Shipment created
+Shipment picked up
+Vehicle departed
+Vehicle location updated
+Shipment arrived at warehouse
+Customs cleared
+Shipment delayed
+Shipment delivered
+
+Problema companiei:
+
+datele sunt distribuite în mai multe sisteme;
+există milioane de evenimente;
+operatorii trebuie să găsească rapid un shipment;
+întârzierile trebuie detectate;
+managementul vrea KPI și analytics;
+sistemele trebuie să funcționeze 24/7;
+în viitor compania vrea predicții ML pentru ETA și întârzieri.
